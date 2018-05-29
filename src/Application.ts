@@ -10,11 +10,12 @@ export default class Application {
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
 		el.appendChild(this.renderer.domElement);
 
-		this.camera.position.z = 5;
+		this.camera.position.z = 4;
 		const ent = new MyCube();
+		this.camera.lookAt(ent.getMesh().position);
 		
 		this.sceneHandler.add(ent);
-		
+		//TODO: https://threejs.org/docs/index.html#manual/introduction/Drawing-lines
 		this.animate();
 	}
 	private animate() {
