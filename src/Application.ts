@@ -71,9 +71,6 @@ class RotatingCube extends Entity {
 	constructor() {
 		super();
 		var texture = new THREE.TextureLoader().load(imageurl);
-		texture.wrapS = THREE.RepeatWrapping;
-		texture.wrapT = THREE.RepeatWrapping;
-		texture.repeat.set(4,4);
 		var geometry = new THREE.BoxGeometry(5, 5, 5);
 		var material = new THREE.MeshPhongMaterial({
 			map: texture
