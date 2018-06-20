@@ -15,10 +15,12 @@ export default class Application {
 		const ent = new RotatingCube();
 		const lineob = new MyLines();
 		const light = new MyLight();
+		const sceneLight = new SceneLight();
 
 		this.sceneHandler.add(ent);
 		this.sceneHandler.add(lineob);
 		this.sceneHandler.add(light);
+		this.sceneHandler.add(sceneLight);
 		//ent.getRenderObject().add(lineob.getRenderObject());
 
 		//this.camera.lookAt(ent.getRenderObject().position);
@@ -92,5 +94,11 @@ class MyLight extends Entity {
 		super();
 		this.setRenderObject(new THREE.PointLight(0xffffff, 1, 100));
 		this.getRenderObject().position.set(20, 10, 0);
+	}
+}
+class SceneLight extends Entity {
+	constructor() {
+		super();
+		this.setRenderObject(new THREE.AmbientLight(0x404040, 0.1));
 	}
 }
