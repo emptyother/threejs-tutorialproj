@@ -5,6 +5,8 @@ export default class Application {
 	private camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
 	private renderer = new THREE.WebGLRenderer();
 	private sceneHandler = new SceneHandler(this.scene);
+	
+	// https://threejs.org/docs/index.html
 
 	constructor(el: HTMLElement) {
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -17,9 +19,9 @@ export default class Application {
 		
 		this.sceneHandler.add(ent);
 		
-		//TODO: https://threejs.org/docs/index.html#manual/introduction/Drawing-lines
 		const lineob = new MyLines();
-		this.sceneHandler.add(lineob);
+		//this.sceneHandler.add(lineob);
+		ent.getRenderObject().add(lineob.getRenderObject());
 		this.camera.lookAt(lineob.getRenderObject().position);
 		
 		this.animate();
@@ -42,9 +44,7 @@ class SceneHandler {
 	}
 	public tick() {
 		for (var entity of this.entities) {
-			if (entity.tick) {
-				entity.tick();
-			}
+			entity.tick();
 		}
 	}
 }
@@ -79,5 +79,4 @@ class MyLines extends Entity {
 		geometry.vertices.push(new THREE.Vector3( 10, 0, 0) );
 		this.mesh = new THREE.Line(geometry, material);
 	}
-	
 }
