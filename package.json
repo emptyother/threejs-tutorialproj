@@ -15,6 +15,7 @@
 		"typescript": "^2.8.3"
 	},
 	"dependencies": {
+		"texture": "0.0.3",
 		"three": "^0.92.0"
 	}
 }

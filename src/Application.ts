@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 
+import imageurl from './texture/test.png';
+
 export default class Application {
 	private scene = new THREE.Scene;
 	private camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
@@ -68,8 +70,13 @@ class Entity {
 class RotatingCube extends Entity {
 	constructor() {
 		super();
+		var texture = new THREE.TextureLoader().load(imageurl);
+		texture.wrapS = THREE.RepeatWrapping;
+		texture.wrapT = THREE.RepeatWrapping;
+		texture.repeat.set(4,4);
 		var geometry = new THREE.BoxGeometry(5, 5, 5);
 		var material = new THREE.MeshPhongMaterial({
+			map: texture
 		});
 		this.setRenderObject(new THREE.Mesh(geometry, material));
 	}
